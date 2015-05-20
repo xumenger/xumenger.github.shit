@@ -1,0 +1,1 @@
+定义sort(),它以比较准则作为一个模板参数。定义包含两个数据成员count和price的类Record。根据各个数据成员对vector<Record>排序。

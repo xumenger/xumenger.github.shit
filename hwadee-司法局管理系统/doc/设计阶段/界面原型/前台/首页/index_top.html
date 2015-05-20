@@ -1,0 +1,40 @@
+﻿<html>
+<head>
+</head>
+
+<body>
+<div id="top">
+<img src="images/top.jpg" width="1349">
+<div id="table">
+  <table width="1349" cellpadding="10%" border="0" bgcolor="#50B0E3" style="color:#C30"> 
+    <tr><td width="400" height="25" ><p id="demo"></p>
+	<script>
+	 var d = new Date();
+	 var wd=d.getDay();//星期
+	 var day=d.getDate();//day
+	 var m=d.getMonth()+1;//month
+	 var txt="";
+	function MyFunction()
+    {
+		    switch(wd)
+		  {
+			case 0 : txt="星期日";break;
+			case 1 : txt="星期一";break;
+			case 2 : txt="星期二";break;
+			case 3 : txt="星期三";break;
+			case 4 : txt="星期四";break;
+			case 5 : txt="星期五";break;
+			case 6 : txt="星期六";break; 
+		 }
+		 return txt;
+	}
+		 document.getElementById("demo").innerHTML="今天是"+m+"月"+day+"日，"+MyFunction()+",祝您工作愉快";
+	 
+	 </script></td>
+     <td align="right">请<a href="../../用户登录/login.htm" target="_new">登录</a>或<a href="../../用户注册/用户注册.html" target="_new">注册</a></td>
+     </tr>
+    </table>
+   </div>
+</div>
+</body>
+</html>

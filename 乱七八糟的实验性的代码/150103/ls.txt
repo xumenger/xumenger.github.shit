@@ -1,0 +1,12 @@
+总用量 72
+drwxrwxr-x 2 perfect perfect 4096  1月  4 11:26 .
+drwxrwxr-x 7 perfect perfect 4096  1月  3 23:51 ..
+-rwxrwxr-x 1 perfect perfect 9613  1月  3 23:59 001
+-rw-rw-r-- 1 perfect perfect  114  1月  3 23:59 001.c
+-rwxrwxr-x 1 perfect perfect 9805  1月  4 00:08 002
+-rw-rw-r-- 1 perfect perfect  317  1月  4 00:08 002.c
+-rw-rw-r-- 1 perfect perfect    0  1月  4 11:26 ls.txt
+-rwxrwxr-x 1 perfect perfect 9780  1月  3 23:56 struct
+-rw-rw-r-- 1 perfect perfect  195  1月  3 23:56 struct.c
+-rwxrwxr-x 1 perfect perfect 9556  1月  4 11:26 system
+-rw-rw-r-- 1 perfect perfect  112  1月  4 11:26 system.c

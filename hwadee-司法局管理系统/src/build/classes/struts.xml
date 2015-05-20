@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.SlashesInActionNames" value="false" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <constant name="struts.ui.theme" value="simple" />
+    
+    <!--include file="example.xml"/
+    
+    <package name="ajax" namespace="/" extends="json-default">
+    	<action name="login*" method="{1}" class="com.asiainfo.ued.statement.action.LoginAction">
+    		<result name="success" type="json">
+    			<param name="contentType">text/json</param>
+    			<param name="root">emp</param>
+    		</result>
+    	</action>
+    </package>
+
+    Add packages here -->
+
+</struts>

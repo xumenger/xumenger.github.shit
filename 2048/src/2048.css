@@ -1,0 +1,107 @@
+header{
+	display:block;
+	margin:0 auto;
+	width:500px;
+	text-align:center;
+}
+
+header h1{
+	font-family:Arial;
+	font-size:60px;
+	font-weight:bold;	/*粗体*/
+}
+
+header #newgamebutton{
+	display:block;		/**/
+	margin:20px auto;	/*上下外边距为20px，左右为居中显示*/
+	
+	width:100px;
+	padding:10px 10px;	/*内边距，上下为10px，左右为10px*/
+	background-color:#8f7a66;
+	
+	font-family:Arial;
+	color:white;
+	
+	border-radius:10px;	/*为#newgamebutton设置一个边角的圆角，半径为10px*/
+	
+	text-decoration:none;
+}
+
+header #newgamebutton:hover{	/*设置#newgamebutton在鼠标悬停时的效果，背景色稍稍有一些变化*/
+	background-color:#9f8b77;
+}
+
+header p{
+	font-family:Arial;
+	font-size:25px;
+	margin:20px auto;
+}
+
+
+#grid-container{
+	width:460px;
+	height:460px;
+	padding:20px;		/*内边距，上下左右都设为20px*/
+	
+	margin:50px auto;	/*外边距，上下都设为50px，左右居中设置*/
+	background-color:#bbada0;
+	
+	border-radius:10px;
+	position:relative;	/*设置为相对定位，只有#grid-container设置了定位之后，.grif-cell在设置绝对定位的时候才会以这个最近的设置了定位的父元素来作为参照*/
+						/*相对定位是以自己原有的位置作为参照的，绝对定位是以离自己最近的那个设置了定位的父元素作为参照的*/
+}
+
+.grid-cell{
+	width:100px;
+	height:100px;
+	border-radius:6px;
+	background-color:#ccc0b3;
+	
+	position:absolute;
+}
+
+
+.number-cell{
+	border-radius:6px;
+	
+	font-family:Arial;
+	font-weight:bold;
+	font-size:60px;
+	line-height:100px;
+	text-align:center;
+	
+	background-color:red;
+	position:absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
