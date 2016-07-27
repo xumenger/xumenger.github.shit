@@ -1,0 +1,51 @@
+	来自“重构”
+	下面的Java类需要支持更多的形状。重构这个类，为增加做准备。
+	public class Shape{
+		public static final int SQUARE = 1;
+		public static final int CIRCLE = 2;
+		public static final int RIGHT_TRIANGLE = 3;
+
+		private int shapeType;
+		private double size;
+		public Shape(int shapeType, double size){
+			this.shapeType = shapeType;
+			this.size = size;
+		}
+		//...other methods.....
+		public double area(){
+			switch(shapeType){
+				case SQUARE: return size*size;
+							 break;
+				case CIRCLE: return Math.PI*size*size/4.0;
+							 break;
+				case RIGHT_TRIANGLE: return size*size/2.0;
+									 break;
+			}
+			return 0;
+		}
+	}
+
+	解答：当你看到有人使用枚举类型（或者Java等价物）区分某种类型的各种变体的时候，你常常可以通过定义子类来改善代码：
+	public class Shape{
+		private double size;
+		public Shape(double size){
+			this.size=size;
+		}
+		public double getSize(){
+			return size;
+		}
+	}
+	public class Square extends Shape{
+		public Square(double size){
+			super(size);
+		}
+		public double area(){
+			double size = getSize();
+			return size*size;
+		}
+	}
+	public class Circle extends Shape{
+		public .....
+	}
+
+	.......

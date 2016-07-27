@@ -1,0 +1,12 @@
+	来自“按合约设计”
+	下面，让我们试一试一个Java的例子——与练习14的例子有些类似。insertNumber把整数插入到有序列表中。前条件和后条件的标注方式与iContact一样。
+	private int data[];
+	/*
+	 *@post data[index-1]<data[index] && data[index]==aValue
+	 */
+	public Node insertNumber(final int value){
+		int index = findPlaceToInsert(aValue);
+		......
+	}
+
+	解答：这是一个坏合约。下标子句的计算（index-1）在边界条件上（比如第一项）无法工作。后条件假定了特定的实现：我们想要合约比这更抽象

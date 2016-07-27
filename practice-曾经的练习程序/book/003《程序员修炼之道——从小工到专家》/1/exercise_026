@@ -1,0 +1,15 @@
+	来自“解耦和得墨忒耳法则”
+	这个例子也是Java编写的
+	public class Colada{
+		private Blender myBlender;
+		private Vector myStuff;
+		public Colada(){
+			myBlender = new Blender();
+			myStuff = new Vector();
+		}
+		private void doSomething(){
+			myBlender.addIngredients(myStuff.elements());
+		}
+	}
+
+	解答：因为Colada创建并拥有myBlender和myStuff，所以可以调用addIngredients和elements

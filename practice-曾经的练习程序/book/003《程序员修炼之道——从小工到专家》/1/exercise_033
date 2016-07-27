@@ -1,0 +1,10 @@
+	来自”靠巧合编程“
+	这段代码来自某个通用的Java跟踪套件。该函数把一个字符串写到日志文件中。它通过了单元测试，但是当一个Web开发者使用它时却失败了。它依靠什么巧合？
+	public static void debug(String s)throws IOException{
+		FileWriter fw = new FileWriter("debug.log", true);
+		fw.write(s);
+		fw.flush();
+		fw.close();
+	}
+
+	解答：在有禁止写本地磁盘的安全约束的applet语境中，这段代码无法工作。再一次，如果你要选择是否在GUI语境中运行，你可以动态的查看当前的环境是什么样的。在这个例子中，如果不能访问本地磁盘，你可以把你的日志文件放在别的地方。

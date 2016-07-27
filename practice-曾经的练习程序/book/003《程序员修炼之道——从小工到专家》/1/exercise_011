@@ -1,0 +1,19 @@
+	来自“文本操纵”
+	你的C程序使用枚举类型表示100种状态。为了进行调试，你想要能把打印成（与数字对应的）字符串。编写一个脚本，从标准输入读取含有以下内容的文件：
+	name
+	state_a
+	state_b
+	 :	:
+	生成文件name.h，其中含有：
+		extern const char *NAME_names[];
+		typedef enum{
+			state_a,
+			state_b,
+			 :	 :
+		}NAME;
+	以及文件name.c，其中含有：
+		const char* NAME_names[] = {
+			"state_a",
+			"state_b",
+			  :   :
+		};

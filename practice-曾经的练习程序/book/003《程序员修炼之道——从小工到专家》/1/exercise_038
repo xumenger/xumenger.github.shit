@@ -1,0 +1,19 @@
+	来自”重构‘
+	下面的代码显然在几年里进行了数次更新，但是所做的改动并没有改善其结构。重构它。
+	if(state == TEXAS){
+		rate = TX_RATE;
+		amt = base * TX_RATE;
+		calc = 2*basic(amt) + extra(amt)*1.05;
+	}
+	else if((state == OHIO) || (state == MAINE;
+			rate = (state == OHIO)?OH_RATE : ME_RATE))
+		......
+
+
+	解答：在这里我们想提出相当温和的重构：确保每个测试只进行一次，并且使所有的计算成为共用的。如果表达式2*basis(...)*1.05也出现在程序的别的地方，我们可能应该使它成为函数，在这里我们没有这样做。
+	我们增加了一个rate_lookup数组，并进行初始化，使除Texas、Ohio和Maine之外的项的值都为1.这种方法使得我们很容易在未来增加其他州的值。取决于所期望的使用模式，我们可以使points也成为能够进行数组查找的字段。
+	rate = rate_lookup[state];
+	amt = base * rate;
+	calc = 2 * basis(amt) + extra(amt)*1.05;
+	if(state == OHIO)
+		points=2;

@@ -1,0 +1,35 @@
+	来自“按合约设计”
+	DBC的经典例子给出的某个ADT（Abstract Data Type）的实现——栈或队列就是典型的例子。但是并没有多少人真的会编写这种低级的类。
+	所以，这个练习的题目是，设计一个厨用搅拌机接口。它最终将是一个基于Web、使用与Internet、CORBA化的搅拌机，但是现在我们只需要一个接口来控制它。它有十档速率设置（0表示关机）。你不能在它空的时候进行操作，而且你只能一档一档的改变速率（也就是说，可以从0到1,从1到2,但是不能从0到2）
+	下面是各种方法。增加适当的前条件、后条件和不变项。
+	int getSpeed()
+	void setSpeed(int x)
+	boolean isFull()
+	void fill()
+	void empty()
+
+	解答：我们将给出用Java编写的函数型构（signature），并按照iContract的规定标出前条件和后条件
+	首先，类的不变项是：
+		/*
+		 *@invariant getSpeed()>0
+		 *	implies isFull()		//Don't run empty
+		 *@invariant getSpeed()>=0 &&
+		 *	getSpeed()<10			//Range check
+		 */
+	然后，前条件和后条件是：
+		/*
+		 *@pre Math.abs(getSpeed()-x)<=1	//Only change by one
+		 *@pre x>=0 && x<10					//Range check
+		 *@post getSpeed()==x				//Honor requested speed
+		 */
+		 public void setSpeed(final int x)
+		 /*
+		  *@pre !isFull()					//Don't fill it twice
+		  *@post isFull()					//Ensure it was done
+		  */
+		void fill()
+		/*
+		 *@pre isFull()						//Don't empty it twice
+		 *@post !isFull()					//Ensure it was done
+		 */
+		void empty()

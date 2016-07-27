@@ -1,0 +1,41 @@
+	来自“重构”
+	这段Java代码是将贯穿你的项目使用的某个框架的组成部分。进行重构，让其一般化，并且将来更易于扩展。
+	public class Window{
+		public Window(int width, int height){
+			....
+		}
+		public void setSize(int width, int height){
+			....
+		}
+		public boolean overlaps(Window w){
+			....
+		}
+		public int getArea(){
+			....
+		}
+	}
+
+	解答：这个类很有趣。初看上去i，窗口的宽度和高度似乎是合理的。但是考虑一下未来。让我们想象一下，我们想要支持任意形状的窗口（如果Window类只知道矩形及其属性，这将很困难）
+	我们建议把窗口的形状从Window类自身中抽取出来。
+	public abstract class Shape{
+		//.....
+		public abstract boolean overlaps(Shape s);
+		public abstract int getArea();
+	}
+	public Windows{
+		private Shape shape;
+		public Window(Shape shape){
+			this.shape=shape;
+			....
+		}
+		public void setShape(Shape shape){
+			this.shape = shape;
+			....
+		}
+		public boolean overlaps(Window w){
+			return shape.overlaps(w.shape);
+		}
+		public int getArea(){
+			return shape.getArea();
+		}
+	}

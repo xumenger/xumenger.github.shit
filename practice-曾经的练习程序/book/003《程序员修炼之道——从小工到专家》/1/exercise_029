@@ -1,0 +1,31 @@
+	来自“它只是视图”
+	假定你有一个航空订票系统，其中包含这样的航班概念：
+	public interface Flight{
+		//Return false if flight full
+		public boolean addPassenger(Passenger p);
+		public void addToWaitList(Passenger p);
+		public int getFlightCapacity();
+		public int getNumPassengers();
+	}
+	如果你把乘客加入等候名单，他们将在有空坐时被自动加入该航班。
+	有一个大型的报表作业负责查看超额订坐或是满员的航班，以提议何时增开航班。它工,。它工作得很好，但运行时间却需要数小时。
+	我们想在处理等候名单时多一些灵活性，我们必须对那个大报表做点什么——它的运行时间太长了。去重新设计这个接口
+
+	解答：我们将给Flight增加另外一些方法，用于维护两个侦听者列表：一个用于等候名单通知，另一个用于航班满员通知
+	public interface Passenger{
+		public void waitListAvailable();
+	}
+	public interface Flight{
+		...
+		public void addWaitListListener(Passenger p);
+		public void removeWaitListListener(Passenger p);
+		public void addFullListener(FullListener b);
+		public void removeFullListener(FullListener b);
+		...
+	}
+	public interface BigReport extends FullListener{
+		public void FilghtFullAlert(Flight f);
+	}
+
+	如果我们试图增加Passenger时因为航班满员而失败，我们可以（可选的）把Passenger放入等候名单。出现空坐时，waitListAvailbale会被调用。该方法随即选择自动增加Passenger，或是让服务代表打电话给客户，询问他们是否仍有意订坐，或是是否有其他需求。我们现在可以灵活的按照每个客户的需求进行不同的处理
+	接下来，我们想要避免让BigReport通过检查大量记录搜寻满员的航班。通过让BigReporter作为侦听者想Flight注册，哥哥Flight可以在满员时（或者接近满员时，如果我们想这么做）发出报告。现在，用户可以即时地得到BigReport的正在发生的、最新的报告，而不需要像以前那样等待它运行几个小时。

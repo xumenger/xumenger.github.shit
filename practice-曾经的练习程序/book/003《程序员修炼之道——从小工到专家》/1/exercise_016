@@ -1,0 +1,9 @@
+	来自“按合约设计”
+	下面的代码段来自Java的栈类。这是好合约吗？
+	/*
+	 *@pre anItem != null	//Require real data
+	 *@post pop() == anItem	//Vertify that it's on the stack
+	 */
+	public void push(final String anItem)
+
+	解答：这是个好合约，但却是一个坏实现。在这里，臭名昭著的“海森堡虫子”冒出了难看的头。程序员可能只是犯了一个简单的击键错误——把top敲成pop。尽管这是一个简单的、人为制造的例子，断言（或代码中任何意外的位置）中的副作用可能会非常难以诊断

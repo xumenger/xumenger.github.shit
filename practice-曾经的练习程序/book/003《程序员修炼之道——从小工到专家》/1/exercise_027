@@ -1,0 +1,16 @@
+	来自“解耦和得墨忒耳法则”
+	这个例子是C++编写的
+
+	void processTransaction(BankAccount acct, int){
+		Person *who;
+		Money amt;
+
+		amt.setValue(123.45);
+		acct.setBalance(amt);
+		who = acct.getOwner();
+		markWorkflow(who->name(), SER_BALANCE);
+	}
+
+	解答：这个例子中，processTransaction拥有awt——它是在栈上创建的。acct是传入的，所以既可以调用setVale，也可以调用setBalance。但是processTransaction并不拥有who，所以调用who->name()违反了法则。得墨忒耳法则建议将这段代码改成为；
+	markWorkfolw(acct.name(), SET_BALANCE);
+	processTransaction没有必要了解是BankAccount中的哪个子对象持有账户名——这一结构知识不应该通过BankAccount的合约显露出来。相反，我们请求BankAccount提供账户名。它知道自己把账户名放在何处（也许是在Person中、在Business中、或是在多态的Customer对象中）

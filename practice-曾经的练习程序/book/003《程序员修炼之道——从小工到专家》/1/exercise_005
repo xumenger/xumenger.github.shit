@@ -1,0 +1,52 @@
+	来自“领域语言”
+	我们想实现一种小型语言，用于控制一种简单的绘图包（也许是一种“海龟图形”系统）。这种语言由单字母命令组成。有些命令后跟单个数字。例如下面的输入将会绘制一个矩形：
+	P 2 # select pen 2
+	D	# pen down
+	W 2 # draw west 2cm
+	N 1 # then north 1cm
+	E 2 # then earth 2cm
+	S 1 # then back south
+	U	# pen up
+	请实现解析这种语言的代码。它应该被设计成简单的增加新命令
+
+	解答：因为我们想要使该语言可扩展，我们将以表驱动的方式实现解析器。表中的每一项都含有命令字母、表明是否需要参数的标志、以及处理该命令要调用的例程的名称
+	typedef struct{
+		char cmd;		//the command letter
+		int hasArg;		//does it take an arguement
+		void (*func)(int, int);		//routine to call
+	}Command;
+	static Command cmds[]={
+		{'P', ARG, doSelectPen},
+		{'U', NO_ARG, doPenUp},
+		{'D', NO_ARG, doPenDown},
+		{'N', ARG, doPenDir},
+		{'E', ARG, doPenDir},
+		{'S', ARG, doPenDir},
+		{'W', ARG, doPenDir}
+	};
+	主程序相当简单：读取一行输入，查找命令，如果需要就获取参数，然后调用处理器函数。
+	while(fgets(buff, sizeof(buff), stdin)){
+		Command *cmd = findCommand(*buff);
+		if(cmd){
+			int arg=0;
+			if(cmd->hasArg && !getArg(buff+1, &arg)){
+				fprintf(stderr, "'%c' needs an arguement\n", *buff);
+				continue;
+			}
+			cmd->func(*buff, arg);	//注意函数指针？！
+		}
+	}
+	查找命令的函数对表进行现行搜索，返回匹配项或NULL。
+	Command *findCommand(int cmd){
+		int i;
+		for(i=0; i<ARRAY_SIZE(cmds); i++){
+			if(cmds[i].cmd==cmd)
+				return cmds+1;
+		}
+		fprintf(stderr, "Unknown command '%c'\n",cmd);
+		return 0;
+	}
+	最后使用sscanf读取数值参数相当简单。
+	int getArg(const char *buff, int *result){
+		return sscanf(buff, "%d", result) == 1;
+	}

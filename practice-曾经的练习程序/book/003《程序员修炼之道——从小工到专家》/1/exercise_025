@@ -1,0 +1,13 @@
+	来自“解耦和得墨忒耳法则”
+	对于下面的以及练习26和27的例子，根据得墨忒耳法则，确定所示方法调用是否允许。
+
+	第一个例子是Java编写的
+	public void showBalance(BankAccount acct){
+		Money amt = acct.getBalance();
+		printToScreen(amt.printFormat());
+	}
+
+	解答：变量acct是作为参数传入的，所以允许调用getBalance。但是，调用amt.printFormat()却非如此。我们并不“拥有”amt，它也不是传给我们的。通过下面的代码，我们可以消除showBalance和Money的耦合
+	void showBalance(BankAccount b){
+		b.printBalance();
+	}

@@ -1,0 +1,18 @@
+来自“正交性”	
+
+	你在编写一个叫做Split的类，其用途是把输入行拆分为字段。下面的两个Java类型构（signature）中，哪一个是更为正交的设计？
+	class Split1{
+		public Split1(InputStreamReader rdr){.....}
+		public void readNextLine() throws Exception{.....}
+		public int numFields(){.....}
+		public String getField(int fieldNo){....}
+	}
+
+	class Split2{
+		public Split2(String line){.....}
+		public int numFields(){.....}
+		public String getField(int fieldNo){.....}
+	}
+
+	解答：我们的看法是，Split2类更为正交。它更专注于自己的任务，拆分输入行，同时忽略像输入行来自何处这样的细节。这不仅使得代码更易于开发，也使得代码更为灵活。Split2拆分的行可以来自文件、可以由另外的例程生成、也可以通过环境传入。
+

@@ -1,0 +1,13 @@
+	来自”靠巧合编程“
+	这段C代码有时在有些机器上能工作，但有时不能。有什么问题？
+
+	/*Truncate string to its last maxlen chars*/
+	void string_tail(char *string, int maxlen){
+		int len = strlen(string);
+		if(len>maxlen){
+			strcpy(string, string+(len-maxlen));
+		}
+	}
+
+	解答：对于重叠的字符串，POSIX的strcpy不保证能正常的工作。在有些架构上它也许碰巧能够工作，但那是巧合。
+

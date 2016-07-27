@@ -1,0 +1,25 @@
+	来自“解耦与得墨忒耳法则”
+	下面的C++头文件中，哪个与系统的其余部分更紧密的耦合在一起？
+	person1.h:
+		#include "date.h"
+		class Person1{
+			private:
+				Date myBirthdate;
+			public:
+				Person1(Date &birthDate);
+				//....
+		}
+
+	person2.h:
+		class Date;
+		class Person2{
+			private:	
+				Date *myBirthdate;
+			public:
+				Person2(Date &birthDate);
+				//.....
+		}
+
+
+	解答：头文件的用途是定义相应实现和其他部分间的接口。头文件自身无需了解Date类的内部情况——它只需告诉编译器，构造器用Date对象做参数。所以第二段代码能更好的工作，除非头文件在inline函数中使用了Date
+	第一段代码有什么问题？对于小项目，除了你不必要让使用Person1类的所有程序都包含Date的头文件外，没有什么问题。一旦这种做法在项目中变得很常见，你很快就会发现，包含一个头文件最终将会导致系统包含其他的大部分头文件——这会严重地托长编译时间
